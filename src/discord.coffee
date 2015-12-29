@@ -17,8 +17,15 @@ class DiscordBot extends Adapter
             password: process.env.HUBOT_DISCORD_PASSWORD
 
         @client = new Discord.Client
+            revivie: true
+
         @client.on 'ready', @.ready
         @client.on 'message', @.message
+
+        @client.on 'debug', (msg) ->
+            @robot.logger.debug '[discordjs] ' + msg
+        @client.on 'error', (msg) ->
+            @robot.logger.error '[discordjs] ' + msg
 
         @client.login @options.email, @options.password
 
