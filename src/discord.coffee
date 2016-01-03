@@ -26,6 +26,7 @@ class DiscordBot extends Adapter
             @robot.logger.debug '[discordjs] ' + msg
         @client.on 'error', (msg) =>
             @robot.logger.error '[discordjs] ' + msg
+            @client.disconnected()
         @client.on 'autoRevive', (msg) =>
             @robot.logger.info 'Discord revived'
 
